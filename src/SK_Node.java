@@ -37,13 +37,20 @@ public class SK_Node
          }
 
      }
-    
+    /**
+     * A shortcut to read user input in other methods.
+     * 
+     * @return input of the user
+     */
      public static String get()
      {
             response = input.nextLine();
             return response;
      }
     
+     /**
+      * Initializes the name ID and the number ID for the incoming node.
+      */
      public static void setName()
      {
         System.out.println("Please enter name ID and number Id using comma\n example 1100,4 name id = 1100 number id = 4");
@@ -57,6 +64,13 @@ public class SK_Node
         //input.close();
      }
      
+     /**
+      * Prints the main menu for the user to choose the next action.
+      * 1: Insertion of a new node.
+      * 2: Search the graph by a name ID
+      * 3: Search the graph by a number ID
+      * 4: Print current node's lookup table
+      */
      public static void printMenu() throws IOException
      {
          InetAddress address=InetAddress.getLocalHost();
@@ -67,13 +81,18 @@ public class SK_Node
                  + "1-Insert\n2-Search By Name ID\n3-Search By Number ID\n4-Print the Lookup Table\n"); 
      }
      
+     /**
+      * Initializes the lookup table for the current node.
+      */
      public static void LookupInit()
      {
          for(int i = 0 ; i < 4 ; i++)
              for(int j = 0 ; j < 2 ; j++)
                  lookup[i][j] = null;
      }
-     
+     /**
+      * Prints the lookup table for the current node.
+      */
      public static void PrintLookup()
      {
          System.out.println("\n");
@@ -85,7 +104,15 @@ public class SK_Node
          }
      }
      
-     
+     /**
+      * Sends a message to a node.
+      * 
+      * @param message the message that is wanted to be sent
+      * @param port port of the receiver node
+      * @param Address address of the receiver node
+      * 
+      * @return the response of the receiver node
+      */
      public static String sendTo(String message, String port, String Address) throws IOException
      {
         Socket s1=null;
@@ -124,6 +151,13 @@ public class SK_Node
         return response;
      }
      
+     /**
+      * Counts the number of common bits between the input node and the current node, starting with the most significant bit.
+      * 
+      * @param name name of the node to be compared with the current node's name
+      * 
+      * @return the number of common bits between the input node and the current node
+      */
      public static int commonBits(String name)
      {
          if(name.length() != Name_ID.length())
@@ -137,7 +171,14 @@ public class SK_Node
          }
            
      }
-     
+     /**
+      * Counts the number of common bits between two input nodes, starting with the most significant bit.
+      * 
+      * @param name1 first node to be used in the comparison
+      * @param name2 second node to be used in the comparison
+      * 
+      * @return the number of common bits between the input nodes
+      */
      public static int commonBits(String name1,String name2)
      {
          if(name1.length() != name2.length())
@@ -150,7 +191,8 @@ public class SK_Node
             return i;
          }
            
-     }     
+     }   
+     
      public static void Insert()
      {
         try 
@@ -254,7 +296,13 @@ public class SK_Node
         }
          
     }
-     
+     /**
+      * Searches the graph for a given name ID.
+      * 
+      * @param name name ID of the node to be searched in the graph
+      * 
+      * @return if found, returns the name of the node. else, returns the string "nothing found"
+      */
      public static String SearchByNameID(String name)
      {
         try 
@@ -271,7 +319,7 @@ public class SK_Node
             
             if(commonBits(Name_ID,name) > level)
             {
-                 level = commonBits(Name_ID , name);
+                 level = commonBits(Name_ID , name); 
                  Left  = lookup[level][0];
                  Right = lookup[level][1]; 
             }
@@ -321,7 +369,13 @@ public class SK_Node
         return "nothing found"; 
          
     }     
-     
+     /**
+      * Searches the graph for a given number ID.
+      * 
+      * @param num number ID of the node to be searched in the graph
+      * 
+      * @return if found, returns the node. else, returns null
+      */
      public static String SearchByNumID(String num)
      {
         int level = 3; 
@@ -416,10 +470,12 @@ public class SK_Node
          return next;
         }
         
-        
      }
      
              
+     /**
+      * Triggers the desired action of the user.
+      */
      
      public static void query()
      {

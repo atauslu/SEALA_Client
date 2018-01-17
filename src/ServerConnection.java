@@ -30,9 +30,9 @@ public class ServerConnection extends Thread
        {    
             try 
             {
-                s= ss2.accept();
-                System.out.println("connection Established");
-                SKThread st=new SKThread(s);
+                s = ss2.accept();
+                System.out.println("Connection established");
+                SKThread st = new SKThread(s);
                 st.start();
             } 
             catch (IOException e)

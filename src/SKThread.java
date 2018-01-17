@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-class SKThread extends Thread
+public class SKThread extends Thread
 {  
 
     String line=null;
@@ -35,7 +35,7 @@ class SKThread extends Thread
             int level = 0;
             line=is.readLine();
             String split[] = null;
-            split = line.split("_");
+            split = line.split("_"); //parses the incoming message and determines the required action by looking at the first part
             switch(split[0])
             {
                 case"lookup": //lookup_level_direction
